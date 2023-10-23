@@ -15,7 +15,7 @@ root.title("DSP")
 home_page = Frame(root)
 task1page = Frame(root)
 task1generate_signal_page = Frame(root)
-
+task2page= Frame(root)
 btn_font = font.Font(size=15)
 lbl_font = font.Font(size=25)
 
@@ -28,15 +28,16 @@ def pages_initializer():
     home_page.grid(row=0, column=0, sticky="nsew")
     task1page.grid(row=0, column=0, sticky="nsew")
     task1generate_signal_page.grid(row=0, column=0, sticky="nsew")
+    task2page.grid(row=0, column=0, sticky="nsew")
 
 
 def home_page_gui():
     home_page_lbl = Label(home_page, text="Home Page", font=lbl_font)
     home_page_lbl.pack()
-
     task1btn = Button(home_page, text="Task 1", command=lambda: task1page.tkraise(), font=btn_font)
     task1btn.pack()
-
+    task2btn = Button(home_page, text="Task 2", command=lambda: task2page.tkraise(), font=btn_font)
+    task2btn.pack()
 
 def read_signal():
     try:
@@ -53,6 +54,360 @@ def read_signal():
 
     except Exception as e:
         messagebox.showerror(title="Error", message="Failed to read the signal file: \n" + str(e))
+
+
+def task2_add():
+    signal1x=[]
+    signal1y=[]
+    signal2x=[]
+    signal2y=[]
+    signal3x = []
+    signal3y = []
+    try:
+        signal_file1 = open("task2/Signal1.txt", "r")
+        signal_file2 = open("task2/Signal2.txt", "r")
+        signal_file3 = open("task2/signal3.txt", "r")
+
+        for line in signal_file1:
+            component = line.strip().split()
+            if len(component) == 2:
+                signal1x.append(float(component[0]))
+                signal1y.append(float(component[1]))
+
+        signal_file1.close()
+
+        #messagebox.showinfo(title="Message", message="Signal1and2_task2 is Read Successfully")
+        for line in signal_file2:
+            component = line.strip().split()
+            if len(component) == 2:
+                signal2x.append(float(component[0]))
+                signal2y.append(float(component[1]))
+
+        signal_file2.close()
+        #messagebox.showinfo(title="Message", message="Signal1and2_task2 is Read Successfully")
+        for line in signal_file3:
+            component = line.strip().split()
+            if len(component) == 2:
+                signal3x.append(float(component[0]))
+                signal3y.append(float(component[1]))
+
+        signal_file2.close()
+
+    except Exception as e:
+        messagebox.showerror(title="Error", message="Failed to read the signal file: \n" + str(e))
+    sig1_add_sig2= np.add(signal1y,signal2y)
+    plt.figure(figsize=(8, 4))
+    plt.scatter(signal1x, sig1_add_sig2, label='Discrete Data', color='red', marker='o')
+    plt.title('add 1 and 2')
+    plt.show()
+    ## add 1+3
+    sig1_add_sig3 = np.add(signal1y, signal3y)
+    plt.figure(figsize=(8, 4))
+    plt.scatter(signal1x, sig1_add_sig3, label='Discrete Data', color='red', marker='o')
+    plt.title('add 1 and 3')
+    plt.show()
+
+def task2_subtract():
+    signal1x=[]
+    signal1y=[]
+    signal2x=[]
+    signal2y=[]
+    signal3x = []
+    signal3y = []
+    try:
+        signal_file1 = open("task2/Signal1.txt", "r")
+        signal_file2 = open("task2/Signal2.txt", "r")
+        signal_file3 = open("task2/signal3.txt", "r")
+
+        for line in signal_file1:
+            component = line.strip().split()
+            if len(component) == 2:
+                signal1x.append(float(component[0]))
+                signal1y.append(float(component[1]))
+
+        signal_file1.close()
+
+        #messagebox.showinfo(title="Message", message="Signal1and2_task2 is Read Successfully")
+        for line in signal_file2:
+            component = line.strip().split()
+            if len(component) == 2:
+                signal2x.append(float(component[0]))
+                signal2y.append(float(component[1]))
+
+        signal_file2.close()
+        #messagebox.showinfo(title="Message", message="Signal1and2_task2 is Read Successfully")
+        for line in signal_file3:
+            component = line.strip().split()
+            if len(component) == 2:
+                signal3x.append(float(component[0]))
+                signal3y.append(float(component[1]))
+
+        signal_file3.close()
+
+    except Exception as e:
+        messagebox.showerror(title="Error", message="Failed to read the signal file: \n" + str(e))
+    sig1_subtract_sig2= np.subtract(signal2y,signal1y)
+    plt.figure(figsize=(8, 4))
+    plt.scatter(signal1x, sig1_subtract_sig2, label='Discrete Data', color='red', marker='o')
+    plt.title('add 1 and 2')
+    plt.show()
+    ## add 1+3
+    sig1_subtract_sig3 = np.subtract(signal3y, signal1y)
+    plt.figure(figsize=(8, 4))
+    plt.scatter(signal1x, sig1_subtract_sig3, label='Discrete Data', color='red', marker='o')
+    plt.title('add 1 and 3')
+    plt.show()
+
+def task2_multilply(cons):
+    signal1x = []
+    signal1y = []
+    signal2x = []
+    signal2y = []
+    signal3x = []
+    signal3y = []
+    cons = float(cons.get())
+    try:
+        signal_file1 = open("task2/Signal1.txt", "r")
+        signal_file2 = open("task2/Signal2.txt", "r")
+        signal_file3 = open("task2/signal3.txt", "r")
+
+        for line in signal_file1:
+            component = line.strip().split()
+            if len(component) == 2:
+                signal1x.append(float(component[0]))
+                signal1y.append(float(component[1]))
+
+        signal_file1.close()
+
+        # messagebox.showinfo(title="Message", message="Signal1and2_task2 is Read Successfully")
+        for line in signal_file2:
+            component = line.strip().split()
+            if len(component) == 2:
+                signal2x.append(float(component[0]))
+                signal2y.append(float(component[1]))
+
+        signal_file2.close()
+        # messagebox.showinfo(title="Message", message="Signal1and2_task2 is Read Successfully")
+        for line in signal_file3:
+            component = line.strip().split()
+            if len(component) == 2:
+                signal3x.append(float(component[0]))
+                signal3y.append(float(component[1]))
+
+        signal_file3.close()
+
+    except Exception as e:
+        messagebox.showerror(title="Error", message="Failed to read the signal file: \n" + str(e))
+    multiply_by_cons =np.array(signal1y)*cons
+    plt.figure(figsize=(8, 4))
+    plt.scatter(signal1x, multiply_by_cons, label='Discrete Data', color='red', marker='o')
+    plt.title('Multiply Signal 1')
+    plt.show()
+    multiply_by_cons = np.array(signal2y) * cons
+    plt.figure(figsize=(8, 4))
+    plt.scatter(signal2x, multiply_by_cons, label='Discrete Data', color='red', marker='o')
+    plt.title('Multiply Signal 2')
+    plt.show()
+
+def task2_squaring():
+    signal1x = []
+    signal1y = []
+    signal2x = []
+    signal2y = []
+    signal3x = []
+    signal3y = []
+    try:
+        signal_file1 = open("task2/Signal1.txt", "r")
+        signal_file2 = open("task2/Signal2.txt", "r")
+        signal_file3 = open("task2/signal3.txt", "r")
+
+        for line in signal_file1:
+            component = line.strip().split()
+            if len(component) == 2:
+                signal1x.append(float(component[0]))
+                signal1y.append(float(component[1]))
+
+        signal_file1.close()
+
+        # messagebox.showinfo(title="Message", message="Signal1and2_task2 is Read Successfully")
+        for line in signal_file2:
+            component = line.strip().split()
+            if len(component) == 2:
+                signal2x.append(float(component[0]))
+                signal2y.append(float(component[1]))
+
+        signal_file2.close()
+        # messagebox.showinfo(title="Message", message="Signal1and2_task2 is Read Successfully")
+        for line in signal_file3:
+            component = line.strip().split()
+            if len(component) == 2:
+                signal3x.append(float(component[0]))
+                signal3y.append(float(component[1]))
+
+        signal_file3.close()
+
+    except Exception as e:
+        messagebox.showerror(title="Error", message="Failed to read the signal file: \n" + str(e))
+    multiply_by_cons =np.array(signal1y)*np.array(signal1y)
+    plt.figure(figsize=(8, 4))
+    plt.scatter(signal1x, multiply_by_cons, label='Discrete Data', color='red', marker='o')
+    plt.title('Squaring signal 1')
+    plt.show()
+
+def task2_shifting(cons):
+    signal1x = []
+    signal1y = []
+    signal2x = []
+    signal2y = []
+    signal3x = []
+    signal3y = []
+    cons = float(cons.get())
+    try:
+        signal_file1 = open("task2/Input Shifting.txt", "r")
+        signal_file2 = open("task2/Signal2.txt", "r")
+        signal_file3 = open("task2/signal3.txt", "r")
+
+        for line in signal_file1:
+            component = line.strip().split()
+            if len(component) == 2:
+                signal1x.append(float(component[0]))
+                signal1y.append(float(component[1]))
+
+        signal_file1.close()
+
+        # messagebox.showinfo(title="Message", message="Signal1and2_task2 is Read Successfully")
+        for line in signal_file2:
+            component = line.strip().split()
+            if len(component) == 2:
+                signal2x.append(float(component[0]))
+                signal2y.append(float(component[1]))
+
+        signal_file2.close()
+        # messagebox.showinfo(title="Message", message="Signal1and2_task2 is Read Successfully")
+        for line in signal_file3:
+            component = line.strip().split()
+            if len(component) == 2:
+                signal3x.append(float(component[0]))
+                signal3y.append(float(component[1]))
+
+        signal_file3.close()
+
+    except Exception as e:
+        messagebox.showerror(title="Error", message="Failed to read the signal file: \n" + str(e))
+    shiftx =np.array(signal1x)-cons
+    plt.figure(figsize=(8, 4))
+    plt.scatter(shiftx, signal1y, label='Discrete Data', color='red', marker='o')
+    plt.title('Multiply Signal 1')
+    plt.show()
+
+def task2_normalize(cons1,cons2):
+    signal1x = []
+    signal1y = []
+    signal2x = []
+    signal2y = []
+    signal3x = []
+    signal3y = []
+    cons1 = float(cons1.get())
+    cons2 = float(cons2.get())
+
+    try:
+        signal_file1 = open("task2/Signal1.txt", "r")
+        signal_file2 = open("task2/Signal2.txt", "r")
+        signal_file3 = open("task2/signal3.txt", "r")
+
+        for line in signal_file1:
+            component = line.strip().split()
+            if len(component) == 2:
+                signal1x.append(float(component[0]))
+                signal1y.append(float(component[1]))
+
+        signal_file1.close()
+
+        # messagebox.showinfo(title="Message", message="Signal1and2_task2 is Read Successfully")
+        for line in signal_file2:
+            component = line.strip().split()
+            if len(component) == 2:
+                signal2x.append(float(component[0]))
+                signal2y.append(float(component[1]))
+
+        signal_file2.close()
+        # messagebox.showinfo(title="Message", message="Signal1and2_task2 is Read Successfully")
+        for line in signal_file3:
+            component = line.strip().split()
+            if len(component) == 2:
+                signal3x.append(float(component[0]))
+                signal3y.append(float(component[1]))
+
+        signal_file3.close()
+
+    except Exception as e:
+        messagebox.showerror(title="Error", message="Failed to read the signal file: \n" + str(e))
+    ## (x-min)/(max-min)
+    ## * (b-a)+a
+    #shiftx =np.array(signal1x)+cons
+    st1= (np.array(signal1y)-np.min(signal1y))/(np.max(signal1y)-np.min(signal1y))
+    signal1y_after= st1* (cons2-cons1)+cons1
+    plt.figure(figsize=(8, 4))
+    plt.scatter(signal1x, signal1y_after, label='signal 1', color='red', marker='o')
+    plt.title('signal 1')
+    plt.show()
+
+    st2 = (np.array(signal2y) - np.min(signal2y)) / (np.max(signal2y) - np.min(signal2y))
+    signal2y_after = st2 * (cons2 - cons1) + cons1
+    plt.figure(figsize=(8, 4))
+    plt.scatter(signal2x, signal2y_after, label='signal 2', color='red', marker='o')
+    plt.title('signal 2')
+    plt.show()
+
+def task2_accum():
+    signal1x = []
+    signal1y = []
+    signal2x = []
+    signal2y = []
+    signal3x = []
+    signal3y = []
+
+
+    try:
+        signal_file1 = open("task2/Signal1.txt", "r")
+        signal_file2 = open("task2/Signal2.txt", "r")
+        signal_file3 = open("task2/signal3.txt", "r")
+
+        for line in signal_file1:
+            component = line.strip().split()
+            if len(component) == 2:
+                signal1x.append(float(component[0]))
+                signal1y.append(float(component[1]))
+
+        signal_file1.close()
+
+        # messagebox.showinfo(title="Message", message="Signal1and2_task2 is Read Successfully")
+        for line in signal_file2:
+            component = line.strip().split()
+            if len(component) == 2:
+                signal2x.append(float(component[0]))
+                signal2y.append(float(component[1]))
+
+        signal_file2.close()
+        # messagebox.showinfo(title="Message", message="Signal1and2_task2 is Read Successfully")
+        for line in signal_file3:
+            component = line.strip().split()
+            if len(component) == 2:
+                signal3x.append(float(component[0]))
+                signal3y.append(float(component[1]))
+
+        signal_file3.close()
+
+    except Exception as e:
+        messagebox.showerror(title="Error", message="Failed to read the signal file: \n" + str(e))
+    ## (x-min)/(max-min)
+    ## * (b-a)+a
+    #shiftx =np.array(signal1x)+cons
+    signal1y_after= np.add.accumulate(signal1y)
+    plt.figure(figsize=(8, 4))
+    plt.scatter(signal1x, signal1y_after, label='signal 1', color='red', marker='o')
+    plt.title('signal 1')
+    plt.show()
 
 
 def display_discrete_signal(x,y):
@@ -90,6 +445,57 @@ def task1page_gui():
     home_page_btn = Button(task1page, text="Home Page", command=lambda: home_page.tkraise(), font=btn_font)
     home_page_btn.pack()
 
+def task2page_gui():
+    task2lbl = Label(task2page, text="Task 2", font=lbl_font)
+    task2lbl.pack()
+    ## add 1 2 , 1,3
+    read_signal_btn1 = Button(task2page, text="add 1+2 then add 1+3", command=task2_add, font=btn_font)
+    read_signal_btn1.pack()
+    # subtract
+    read_signal_btn2 = Button(task2page, text="subtract 1+2 then subtact 1+3", command=task2_subtract, font=btn_font)
+    read_signal_btn2.pack()
+    #multiply by cons
+    cons = Label(task2page, text="Amplitude")
+    cons.pack()
+    cons_ent = Entry(task2page)
+    cons_ent.pack()
+
+    read_signal_btn3 = Button(task2page, text="Multiply signal 1 and 2", command=lambda :task2_multilply(cons_ent), font=btn_font)
+    read_signal_btn3.pack()
+
+    read_signal_btn4 = Button(task2page, text="Squaing signal 1", command=task2_squaring, font=btn_font)
+    read_signal_btn4.pack()
+
+    cons2 = Label(task2page, text="Shift")
+    cons2.pack()
+    cons_ent2 = Entry(task2page)
+    cons_ent2.pack()
+
+    read_signal_btn5 = Button(task2page, text="Shift signal 1", command=lambda: task2_shifting(cons_ent2),
+                              font=btn_font)
+    read_signal_btn5.pack()
+
+    ## Normalize
+    cons3 = Label(task2page, text="a")
+    cons3.pack()
+    cons_ent3 = Entry(task2page)
+    cons_ent3.pack()
+
+    cons4 = Label(task2page, text="b")
+    cons4.pack()
+    cons_ent4 = Entry(task2page)
+    cons_ent4.pack()
+
+    read_signal_btn6 = Button(task2page, text="Shift signal 1", command=lambda: task2_normalize(cons_ent3,cons_ent4),
+                              font=btn_font)
+    read_signal_btn6.pack()
+    ## acc
+    read_signal_btn7 = Button(task2page, text="Accumlate", command=lambda: task2_accum(),
+                              font=btn_font)
+    read_signal_btn7.pack()
+
+    home_page_btn = Button(task2page, text="Home Page", command=lambda: home_page.tkraise(), font=btn_font)
+    home_page_btn.pack()
 
 def generate_signal(selected_function, amplitude_entry, phase_shift_entry, analog_frequency_entry, sampling_frequency_entry):
     selected_function = selected_function.get()
@@ -179,11 +585,11 @@ def task1generate_signal_page_gui():
     generate_signal_btn.pack()
 
 
-
+#task2_add()
 pages_initializer()
 home_page_gui()
 task1page_gui()
 task1generate_signal_page_gui()
-
+task2page_gui()
 home_page.tkraise()
 root.mainloop()
