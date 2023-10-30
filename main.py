@@ -16,6 +16,7 @@ home_page = Frame(root)
 task1page = Frame(root)
 task1generate_signal_page = Frame(root)
 task2page= Frame(root)
+task3page= Frame(root)
 btn_font = font.Font(size=15)
 lbl_font = font.Font(size=25)
 
@@ -29,7 +30,7 @@ def pages_initializer():
     task1page.grid(row=0, column=0, sticky="nsew")
     task1generate_signal_page.grid(row=0, column=0, sticky="nsew")
     task2page.grid(row=0, column=0, sticky="nsew")
-
+    task3page.grid(row=0, column=0, sticky="nsew")
 
 def home_page_gui():
     home_page_lbl = Label(home_page, text="Home Page", font=lbl_font)
@@ -38,6 +39,8 @@ def home_page_gui():
     task1btn.pack()
     task2btn = Button(home_page, text="Task 2", command=lambda: task2page.tkraise(), font=btn_font)
     task2btn.pack()
+    task3btn = Button(home_page, text="Task 3", command=lambda: task3page.tkraise(), font=btn_font)
+    task3btn.pack()
 
 def read_signal():
     try:
@@ -486,7 +489,7 @@ def task2page_gui():
     cons_ent4 = Entry(task2page)
     cons_ent4.pack()
 
-    read_signal_btn6 = Button(task2page, text="Shift signal 1", command=lambda: task2_normalize(cons_ent3,cons_ent4),
+    read_signal_btn6 = Button(task2page, text="Normalize", command=lambda: task2_normalize(cons_ent3,cons_ent4),
                               font=btn_font)
     read_signal_btn6.pack()
     ## acc
@@ -495,6 +498,21 @@ def task2page_gui():
     read_signal_btn7.pack()
 
     home_page_btn = Button(task2page, text="Home Page", command=lambda: home_page.tkraise(), font=btn_font)
+    home_page_btn.pack()
+
+def task3page_gui():
+    from Task3 import task3_work
+
+    cons2 = Label(task3page, text="Levels Number ?")
+    cons2.pack()
+    cons_ent2 = Entry(task3page)
+    cons_ent2.pack()
+
+    read_signal_btn5 = Button(task3page, text="Do Work", command=lambda: task3_work(cons_ent2),
+                              font=btn_font)
+    read_signal_btn5.pack()
+
+    home_page_btn = Button(task3page, text="Home Page", command=lambda: home_page.tkraise(), font=btn_font)
     home_page_btn.pack()
 
 def generate_signal(selected_function, amplitude_entry, phase_shift_entry, analog_frequency_entry, sampling_frequency_entry):
@@ -591,5 +609,6 @@ home_page_gui()
 task1page_gui()
 task1generate_signal_page_gui()
 task2page_gui()
+task3page_gui()
 home_page.tkraise()
 root.mainloop()
