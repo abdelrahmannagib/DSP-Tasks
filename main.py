@@ -5,7 +5,7 @@ from tkinter import font
 from tkinter import messagebox
 from tkinter import IntVar
 import numpy as np
-
+import Task3
 # Load GUI
 root = Tk()
 root.geometry("400x400")
@@ -501,15 +501,20 @@ def task2page_gui():
     home_page_btn.pack()
 
 def task3page_gui():
-    from Task3 import task3_work
-
     cons2 = Label(task3page, text="Levels Number ?")
     cons2.pack()
     cons_ent2 = Entry(task3page)
     cons_ent2.pack()
 
-    read_signal_btn5 = Button(task3page, text="Do Work", command=lambda: task3_work(cons_ent2),
-                              font=btn_font)
+    cons3 = Label(task3page, text="Number of Bits ?")
+    cons3.pack()
+    cons_ent3 = Entry(task3page)
+    cons_ent3.pack()
+
+    read_signal_btn = Button(task3page, text="Read Signal", command=Task3.read_signal, font=btn_font)
+    read_signal_btn.pack()
+
+    read_signal_btn5 = Button(task3page, text="Do Work", command=lambda: Task3.task3_work(cons_ent2, cons_ent3), font=btn_font)
     read_signal_btn5.pack()
 
     home_page_btn = Button(task3page, text="Home Page", command=lambda: home_page.tkraise(), font=btn_font)
@@ -611,4 +616,7 @@ task1generate_signal_page_gui()
 task2page_gui()
 task3page_gui()
 home_page.tkraise()
+
+
+
 root.mainloop()
