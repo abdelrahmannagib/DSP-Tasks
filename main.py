@@ -535,8 +535,8 @@ def task4page_gui():
     dft_btn = Button(task4page, text="DFT", command=lambda:task4.dft(fs_ent), font=btn_font)
     dft_btn.pack()
 
-    idft_btn = Button(task4page, text="IDFT", command=task4.idft, font=btn_font)
-    idft_btn.pack()
+    # idft_btn = Button(task4page, text="IDFT", command=task4.idft, font=btn_font)
+    # idft_btn.pack()
 
     home_page_btn = Button(task4page, text="Home Page", command=lambda: home_page.tkraise(), font=btn_font)
     home_page_btn.pack()
@@ -564,7 +564,7 @@ def task4page_gui():
     newphase_ent = Entry(task4page)
     newphase_ent.pack()
 
-    modify_btn = Button(task4page, text="Modify", command=lambda: , font=btn_font)
+    modify_btn = Button(task4page, text="Idft", command=lambda:task4.idft(index_ent,newAmp_ent,newphase_ent) , font=btn_font)
     modify_btn.pack()
 def generate_signal(selected_function, amplitude_entry, phase_shift_entry, analog_frequency_entry, sampling_frequency_entry):
     selected_function = selected_function.get()

@@ -120,7 +120,7 @@ def read_IDFT(amp, phase):
 
 
 
-def idft(ind,realN,imagN):
+def idft(ind,AmpN,phaseN):
 
     amp = []
     phase = []
@@ -138,9 +138,9 @@ def idft(ind,realN,imagN):
     X= np.zeros(N)
 
     if ind.get():
-        real_part = realN * np.cos(imagN[i])
-        imag_part = realN * np.sin(imagN)
-        complex_numbers[ind](complex(real_part, imag_part))
+        real_part = float(AmpN.get()) * np.cos(float(phaseN.get()))
+        imag_part = float(AmpN.get()) * np.sin(float(phaseN.get()))
+        complex_numbers[int(ind.get())]=(complex(real_part, imag_part))
 
 
 
