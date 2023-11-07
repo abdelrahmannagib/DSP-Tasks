@@ -6,6 +6,8 @@ from tkinter import messagebox
 from tkinter import IntVar
 import numpy as np
 import Task3
+from Task4 import task4
+
 # Load GUI
 root = Tk()
 root.geometry("400x400")
@@ -15,8 +17,9 @@ root.title("DSP")
 home_page = Frame(root)
 task1page = Frame(root)
 task1generate_signal_page = Frame(root)
-task2page= Frame(root)
-task3page= Frame(root)
+task2page = Frame(root)
+task3page = Frame(root)
+task4page = Frame(root)
 btn_font = font.Font(size=15)
 lbl_font = font.Font(size=25)
 
@@ -31,6 +34,7 @@ def pages_initializer():
     task1generate_signal_page.grid(row=0, column=0, sticky="nsew")
     task2page.grid(row=0, column=0, sticky="nsew")
     task3page.grid(row=0, column=0, sticky="nsew")
+    task4page.grid(row=0, column=0, sticky="nsew")
 
 def home_page_gui():
     home_page_lbl = Label(home_page, text="Home Page", font=lbl_font)
@@ -41,6 +45,8 @@ def home_page_gui():
     task2btn.pack()
     task3btn = Button(home_page, text="Task 3", command=lambda: task3page.tkraise(), font=btn_font)
     task3btn.pack()
+    task4btn = Button(home_page, text="Task 4", command=lambda: task4page.tkraise(), font=btn_font)
+    task4btn.pack()
 
 def read_signal():
     try:
@@ -520,6 +526,20 @@ def task3page_gui():
     home_page_btn = Button(task3page, text="Home Page", command=lambda: home_page.tkraise(), font=btn_font)
     home_page_btn.pack()
 
+def task4page_gui():
+    fs_lbl = Label(task4page, text="Fs")
+    fs_lbl.pack()
+    fs_ent = Entry(task4page)
+    fs_ent.pack()
+
+    dft_btn = Button(task4page, text="DFT", command=lambda:task4.dft(fs_ent), font=btn_font)
+    dft_btn.pack()
+
+    home_page_btn = Button(task4page, text="Home Page", command=lambda: home_page.tkraise(), font=btn_font)
+    home_page_btn.pack()
+
+    idft_btn = Button(task4page, text="IDFT", command=task4.idft, font=btn_font)
+    idft_btn.pack()
 def generate_signal(selected_function, amplitude_entry, phase_shift_entry, analog_frequency_entry, sampling_frequency_entry):
     selected_function = selected_function.get()
     amplitude = float(amplitude_entry.get())
@@ -615,6 +635,7 @@ task1page_gui()
 task1generate_signal_page_gui()
 task2page_gui()
 task3page_gui()
+task4page_gui()
 home_page.tkraise()
 
 

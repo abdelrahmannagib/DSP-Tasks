@@ -104,7 +104,7 @@ def task3_work(no_level, no_bit):
             index += 1
 
 
-    # QuantizationTest1("Quan1_Out.txt", encod, quantized_signal)
+    QuantizationTest1("Quan1_Out.txt", encod, quantized_signal)
     QuantizationTest2("Quan2_Out.txt", indces, encod, quantized_signal, error)
 
     return
