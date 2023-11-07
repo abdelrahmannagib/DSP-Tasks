@@ -535,11 +535,37 @@ def task4page_gui():
     dft_btn = Button(task4page, text="DFT", command=lambda:task4.dft(fs_ent), font=btn_font)
     dft_btn.pack()
 
+    idft_btn = Button(task4page, text="IDFT", command=task4.idft, font=btn_font)
+    idft_btn.pack()
+
     home_page_btn = Button(task4page, text="Home Page", command=lambda: home_page.tkraise(), font=btn_font)
     home_page_btn.pack()
 
-    idft_btn = Button(task4page, text="IDFT", command=task4.idft, font=btn_font)
-    idft_btn.pack()
+
+
+    modification_lbl = Label(task4page, text="Modify Amplitude and Phase Shift")
+    modification_lbl.pack()
+
+    index_lbl = Label(task4page, text="index")
+    index_lbl.pack()
+
+    index_ent = Entry(task4page)
+    index_ent.pack()
+
+    newAmp_lbl = Label(task4page, text="New Amplitude")
+    newAmp_lbl.pack()
+
+    newAmp_ent = Entry(task4page)
+    newAmp_ent.pack()
+
+    newphase_lbl = Label(task4page, text="New phase")
+    newphase_lbl.pack()
+
+    newphase_ent = Entry(task4page)
+    newphase_ent.pack()
+
+    modify_btn = Button(task4page, text="Modify", command=lambda: , font=btn_font)
+    modify_btn.pack()
 def generate_signal(selected_function, amplitude_entry, phase_shift_entry, analog_frequency_entry, sampling_frequency_entry):
     selected_function = selected_function.get()
     amplitude = float(amplitude_entry.get())
