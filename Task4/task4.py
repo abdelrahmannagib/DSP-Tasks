@@ -120,7 +120,8 @@ def read_IDFT(amp, phase):
 
 
 
-def idft():
+def idft(ind,realN,imagN):
+
     amp = []
     phase = []
     read_IDFT(amp, phase)
@@ -132,18 +133,51 @@ def idft():
         imag_part = amp[i] * np.sin(phase[i])
         complex_numbers.append(complex(real_part, imag_part))
 
-    X = np.zeros(N, dtype = complex)
-    # change=0
-    # if change==1:
-    #     ind=3
+
+    Y = np.zeros(N)
+    X= np.zeros(N)
+
+    if ind.get():
+        real_part = realN * np.cos(imagN[i])
+        imag_part = realN * np.sin(imagN)
+        complex_numbers[ind](complex(real_part, imag_part))
+
+
 
     #print(complex_numbers[3].imag)
     for n in range(N):
         for k in range(N):
-            X[n] += complex_numbers[k] * np.exp((2j * np.pi * k * n) / N)
-        X[n]*= 1/N
-        X[n]= np.round(X[n],1)
-        print(X[n].real)
+
+            Y[n] += complex_numbers[k] * np.exp((2j * np.pi * k * n) / N)
+        Y[n]*= 1/N
+        Y[n]= np.round(Y[n],1)
+        X[n]= n
+        #print(X[n])
+        #print(Y[n].real)
+    from main import display_continues_signal
+    test2(X,Y)
+    display_continues_signal(X,Y)
 
 
-def modifyIDFT(index, newAmp, newPhase):
+def test2(X, Y):
+    testpath = "Task4/IDFT/Output_Signal_IDFT.txt"
+    file = open(testpath)
+    testAmp = []
+    testPhase = []
+    for line in file:
+        component = line.strip().split()
+        if len(component) == 2:
+            if component[0].endswith('f'):
+                component[0] = component[0][:-1]
+            if component[1].endswith('f'):
+                component[1] = component[1][:-1]
+
+            testAmp.append(float(component[0]))
+            testPhase.append(float(component[1]))
+
+    file.close()
+
+    t1 = signalcompare.SignalComapreAmplitude(X, testAmp)
+    t2 = signalcompare.SignalComaprePhaseShift(Y, testPhase)
+    if t1 and t2:
+        print("over all passed !!")
