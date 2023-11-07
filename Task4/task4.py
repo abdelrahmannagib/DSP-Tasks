@@ -156,6 +156,9 @@ def idft(ind,AmpN,phaseN):
         #print(Y[n].real)
     from main import display_continues_signal
     test2(X,Y)
+    for i in range(N):
+        print(str(X[i]) + " " +str(Y[i]))
+
     display_continues_signal(X,Y)
 
 
