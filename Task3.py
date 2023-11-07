@@ -30,6 +30,7 @@ def read_signal():
 encoding = []
 
 def encoding_algorithm(levels_num, n_bits):
+    encoding.clear()
     for i in range(0, levels_num):
         # Convert the integer to binary string and remove the '0b' prefix
         binary_str = bin(i)[2:]
@@ -47,13 +48,19 @@ def encoding_algorithm(levels_num, n_bits):
 def task3_work(no_level, no_bit):
     lvls = 0
     bits = 0
+
+
+    test1bool = 1
+
     if not no_level.get():
         bits = int(no_bit.get())
         lvls = pow(2, bits)
+        test1bool = 1
 
     if not no_bit.get():
         lvls = int(no_level.get())
         bits = math.ceil(np.log(lvls) / np.log(2))
+        test1bool = 0
 
     encoding_algorithm(lvls, bits)
     mn = np.min(signal1y)
@@ -86,6 +93,9 @@ def task3_work(no_level, no_bit):
     encod = []
     quantized_signal = []
 
+
+    encod.clear()
+    quantized_signal.clear()
     indces = []
     error = []
     for amp in signal1y:
@@ -103,8 +113,9 @@ def task3_work(no_level, no_bit):
                 break
             index += 1
 
-
-    QuantizationTest1("Quan1_Out.txt", encod, quantized_signal)
-    QuantizationTest2("Quan2_Out.txt", indces, encod, quantized_signal, error)
+    if test1bool:
+        QuantizationTest1("Quan1_Out.txt", encod, quantized_signal)
+    else:
+        QuantizationTest2("Quan2_Out.txt", indces, encod, quantized_signal, error)
 
     return
