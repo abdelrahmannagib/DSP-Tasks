@@ -119,6 +119,7 @@ def read_IDFT(amp, phase):
         messagebox.showinfo(title="Error", message="can't read such file")
 
 
+
 def idft():
     amp = []
     phase = []
@@ -131,13 +132,10 @@ def idft():
         imag_part = amp[i] * np.sin(phase[i])
         complex_numbers.append(complex(real_part, imag_part))
 
-    X = np.zeros(N)
+    X = np.zeros(N, dtype = complex)
     # change=0
     # if change==1:
     #     ind=3
-
-
-
 
     #print(complex_numbers[3].imag)
     for n in range(N):
@@ -146,3 +144,6 @@ def idft():
         X[n]*= 1/N
         X[n]= np.round(X[n],1)
         print(X[n].real)
+
+
+def modifyIDFT(index, newAmp, newPhase):
