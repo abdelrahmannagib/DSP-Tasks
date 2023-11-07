@@ -131,8 +131,18 @@ def idft():
         imag_part = amp[i] * np.sin(phase[i])
         complex_numbers.append(complex(real_part, imag_part))
 
+    X = np.zeros(N)
+    # change=0
+    # if change==1:
+    #     ind=3
 
-    print(complex_numbers)
+
+
+
+    #print(complex_numbers[3].imag)
     for n in range(N):
         for k in range(N):
-            pass
+            X[n] += complex_numbers[k] * np.exp((2j * np.pi * k * n) / N)
+        X[n]*= 1/N
+        X[n]= np.round(X[n],1)
+        print(X[n].real)
