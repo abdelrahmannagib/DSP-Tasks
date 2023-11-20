@@ -6,8 +6,9 @@ from tkinter import messagebox
 from tkinter import IntVar
 import numpy as np
 import Task3
+import Task5.Task5
 from Task4 import task4
-
+from Task5 import *
 # Load GUI
 root = Tk()
 root.geometry("400x400")
@@ -20,6 +21,7 @@ task1generate_signal_page = Frame(root)
 task2page = Frame(root)
 task3page = Frame(root)
 task4page = Frame(root)
+task5page = Frame(root)
 btn_font = font.Font(size=15)
 lbl_font = font.Font(size=25)
 
@@ -35,6 +37,8 @@ def pages_initializer():
     task2page.grid(row=0, column=0, sticky="nsew")
     task3page.grid(row=0, column=0, sticky="nsew")
     task4page.grid(row=0, column=0, sticky="nsew")
+    task5page.grid(row=0, column=0, sticky="nsew")
+
 
 def home_page_gui():
     home_page_lbl = Label(home_page, text="Home Page", font=lbl_font)
@@ -47,6 +51,8 @@ def home_page_gui():
     task3btn.pack()
     task4btn = Button(home_page, text="Task 4", command=lambda: task4page.tkraise(), font=btn_font)
     task4btn.pack()
+    task5btn = Button(home_page, text="Task 5", command=lambda: task5page.tkraise(), font=btn_font)
+    task5btn.pack()
 
 def read_signal():
     try:
@@ -566,6 +572,20 @@ def task4page_gui():
 
     modify_btn = Button(task4page, text="Idft", command=lambda:task4.idft(index_ent,newAmp_ent,newphase_ent) , font=btn_font)
     modify_btn.pack()
+def task5page_gui():
+    cons55 = Label(task5page, text="Choose coff")
+    cons55.pack()
+    cons_ent55 = Entry(task5page)
+    cons_ent55.pack()
+
+    Dct_btn = Button(task5page, text="Compute Dct", command=lambda: Task5.dct(cons_ent55), font=btn_font)
+    Dct_btn.pack()
+
+    Remove_Btn = Button(task5page, text="Remove Dct", command=lambda: Task5.remove_dc(), font=btn_font)
+    Remove_Btn.pack()
+
+    home_page_btn = Button(task5page, text="Home Page", command=lambda: home_page.tkraise(), font=btn_font)
+    home_page_btn.pack()
 def generate_signal(selected_function, amplitude_entry, phase_shift_entry, analog_frequency_entry, sampling_frequency_entry):
     selected_function = selected_function.get()
     amplitude = float(amplitude_entry.get())
@@ -662,6 +682,8 @@ task1generate_signal_page_gui()
 task2page_gui()
 task3page_gui()
 task4page_gui()
+task5page_gui()
+
 home_page.tkraise()
 
 
