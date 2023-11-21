@@ -2,6 +2,7 @@ from tkinter import filedialog
 from tkinter import messagebox
 import matplotlib.pyplot as plt
 import numpy as np
+from Task5.comparesignal2 import SignalSamplesAreEqual
 
 signal1x = []
 signal1y = []
@@ -37,19 +38,28 @@ def dct(m):
         X[k]*= np.sqrt(2/N)
     # print("harmonic", X, "\n")
 
-
     with open('T5_DCT_Done.txt', 'w') as file:
         print("0\n1",file=file)
         print(N,  file=file)
         for i in range(m):
             print(0, X[i], file=file)
 
+    print("DCT is done")
+    test_path = "F:\Projects Hosted On Githup\main.py\Task5\DCT\DCT_output.txt"
+    SignalSamplesAreEqual(test_path, X)
+
 def remove_dc():
     read_signal()
     N = len(signal1y)
     Avg= np.average(signal1y)
+    res = []
     with open('T5_Delete.txt', 'w') as file:
         print("0\n1",file=file)
         print(N,  file=file)
         for i in range(N):
             print(i,signal1y[i]-Avg , file=file)
+            res.append(signal1y[i] - Avg)
+
+    print("remove is done")
+    test_path = "F:\Projects Hosted On Githup\main.py\Task5\Remove DC component\DC_component_output.txt"
+    SignalSamplesAreEqual(test_path, res)
