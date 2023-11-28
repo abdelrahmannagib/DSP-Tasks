@@ -632,6 +632,9 @@ def task6page_gui():
     Drev_btn = Button(task6page, text="Drev", command=lambda: DerivativeSignal.DerivativeSignal(), font=btn_font)
     Drev_btn.pack()
 
+    RemoveDc_btn = Button(task6page, text="RemoveDc", command=lambda: Task6.remove_dc(), font=btn_font)
+    RemoveDc_btn.pack()
+
     home_page_btn = Button(task6page, text="Home Page", command=lambda: home_page.tkraise(), font=btn_font)
     home_page_btn.pack()
 def generate_signal(selected_function, amplitude_entry, phase_shift_entry, analog_frequency_entry, sampling_frequency_entry):
