@@ -7,6 +7,9 @@ from tkinter import IntVar
 import numpy as np
 import Task3
 import Task5.Task5
+import Task6.Task6
+from Task6 import *
+
 from Task4 import task4
 from Task5 import *
 # Load GUI
@@ -22,6 +25,8 @@ task2page = Frame(root)
 task3page = Frame(root)
 task4page = Frame(root)
 task5page = Frame(root)
+task6page = Frame(root)
+
 btn_font = font.Font(size=15)
 lbl_font = font.Font(size=25)
 
@@ -38,6 +43,7 @@ def pages_initializer():
     task3page.grid(row=0, column=0, sticky="nsew")
     task4page.grid(row=0, column=0, sticky="nsew")
     task5page.grid(row=0, column=0, sticky="nsew")
+    task6page.grid(row=0, column=0, sticky="nsew")
 
 
 def home_page_gui():
@@ -53,6 +59,8 @@ def home_page_gui():
     task4btn.pack()
     task5btn = Button(home_page, text="Task 5", command=lambda: task5page.tkraise(), font=btn_font)
     task5btn.pack()
+    task6btn = Button(home_page, text="Task 6", command=lambda: task6page.tkraise(), font=btn_font)
+    task6btn.pack()
 
 def read_signal():
     try:
@@ -586,6 +594,41 @@ def task5page_gui():
 
     home_page_btn = Button(task5page, text="Home Page", command=lambda: home_page.tkraise(), font=btn_font)
     home_page_btn.pack()
+
+def task6page_gui():
+    ws_lbl = Label(task6page, text="Window Size")
+    ws_lbl.pack()
+    ws_ent = Entry(task6page)
+    ws_ent.pack()
+
+    # read_signal_btn = Button(task6page, text="Read Signal", command=Task6.read_signal, font=btn_font)
+    # read_signal_btn.pack()
+
+    moving_avg_btn = Button(task6page, text="Moving Average", command=lambda: Task6.moving_avg(ws_ent), font=btn_font)
+    moving_avg_btn.pack()
+
+    space_label = Label(task6page, text="", height=1)
+    space_label.pack()
+
+    folding_btn = Button(task6page, text="Folding Signal", command=Task6.folding_signal, font=btn_font)
+    folding_btn.pack()
+
+    space_label = Label(task6page, text="", height=1)
+    space_label.pack()
+
+    steps_lbl = Label(task6page, text="Steps")
+    steps_lbl.pack()
+    steps_ent = Entry(task6page)
+    steps_ent.pack()
+
+    delay_advance_btn = Button(task6page, text="Delay/Advance Folded Signal", command=lambda:Task6.delay_advance_folded(steps_ent), font=btn_font)
+    delay_advance_btn.pack()
+
+    space_label = Label(task6page, text="", height=1)
+    space_label.pack()
+
+    home_page_btn = Button(task6page, text="Home Page", command=lambda: home_page.tkraise(), font=btn_font)
+    home_page_btn.pack()
 def generate_signal(selected_function, amplitude_entry, phase_shift_entry, analog_frequency_entry, sampling_frequency_entry):
     selected_function = selected_function.get()
     amplitude = float(amplitude_entry.get())
@@ -683,6 +726,7 @@ task2page_gui()
 task3page_gui()
 task4page_gui()
 task5page_gui()
+task6page_gui()
 
 home_page.tkraise()
 
