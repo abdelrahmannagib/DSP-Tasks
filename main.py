@@ -627,6 +627,11 @@ def task6page_gui():
     space_label = Label(task6page, text="", height=1)
     space_label.pack()
 
+    from Task6.Derivative_Updated import DerivativeSignal
+
+    Drev_btn = Button(task6page, text="Drev", command=lambda: DerivativeSignal.DerivativeSignal(), font=btn_font)
+    Drev_btn.pack()
+
     home_page_btn = Button(task6page, text="Home Page", command=lambda: home_page.tkraise(), font=btn_font)
     home_page_btn.pack()
 def generate_signal(selected_function, amplitude_entry, phase_shift_entry, analog_frequency_entry, sampling_frequency_entry):
