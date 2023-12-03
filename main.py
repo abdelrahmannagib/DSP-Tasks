@@ -8,8 +8,8 @@ import numpy as np
 import Task3
 import Task5.Task5
 import Task6.Task6
+import Task7.task7
 from Task6 import *
-
 from Task4 import task4
 from Task5 import *
 # Load GUI
@@ -26,6 +26,7 @@ task3page = Frame(root)
 task4page = Frame(root)
 task5page = Frame(root)
 task6page = Frame(root)
+task7page = Frame(root)
 
 btn_font = font.Font(size=15)
 lbl_font = font.Font(size=25)
@@ -44,6 +45,7 @@ def pages_initializer():
     task4page.grid(row=0, column=0, sticky="nsew")
     task5page.grid(row=0, column=0, sticky="nsew")
     task6page.grid(row=0, column=0, sticky="nsew")
+    task7page.grid(row=0, column=0, sticky="nsew")
 
 
 def home_page_gui():
@@ -61,6 +63,8 @@ def home_page_gui():
     task5btn.pack()
     task6btn = Button(home_page, text="Task 6", command=lambda: task6page.tkraise(), font=btn_font)
     task6btn.pack()
+    task7btn = Button(home_page, text="Task 7", command=lambda: task7page.tkraise(), font=btn_font)
+    task7btn.pack()
 
 def read_signal():
     try:
@@ -629,6 +633,20 @@ def task6page_gui():
 
     home_page_btn = Button(task6page, text="Home Page", command=lambda: home_page.tkraise(), font=btn_font)
     home_page_btn.pack()
+
+def task7page_gui():
+    read_signal_btn = Button(task7page, text="Read Signal", command=lambda: Task7.task7.read_signal("signal"), font=btn_font)
+    read_signal_btn.pack()
+
+    read_filter_btn = Button(task7page, text="Read Filter", command=lambda: Task7.task7.read_signal("filter"), font=btn_font)
+    read_filter_btn.pack()
+
+    convolve_btn = Button(task7page, text="Convolve", command=lambda: Task7.task7.convolv(), font=btn_font)
+    convolve_btn.pack()
+
+    home_page_btn = Button(task7page, text="Home Page", command=lambda: home_page.tkraise(), font=btn_font)
+    home_page_btn.pack()
+
 def generate_signal(selected_function, amplitude_entry, phase_shift_entry, analog_frequency_entry, sampling_frequency_entry):
     selected_function = selected_function.get()
     amplitude = float(amplitude_entry.get())
@@ -727,6 +745,7 @@ task3page_gui()
 task4page_gui()
 task5page_gui()
 task6page_gui()
+task7page_gui()
 
 home_page.tkraise()
 
