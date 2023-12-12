@@ -9,9 +9,11 @@ import Task3
 import Task5.Task5
 import Task6.Task6
 import Task7.task7
+import task8
 from Task6 import *
 from Task4 import task4
 from Task5 import *
+from Task8 import *
 # Load GUI
 root = Tk()
 root.geometry("400x400")
@@ -27,6 +29,7 @@ task4page = Frame(root)
 task5page = Frame(root)
 task6page = Frame(root)
 task7page = Frame(root)
+task8page = Frame(root)
 
 btn_font = font.Font(size=15)
 lbl_font = font.Font(size=25)
@@ -46,6 +49,7 @@ def pages_initializer():
     task5page.grid(row=0, column=0, sticky="nsew")
     task6page.grid(row=0, column=0, sticky="nsew")
     task7page.grid(row=0, column=0, sticky="nsew")
+    task8page.grid(row=0, column=0, sticky="nsew")
 
 
 def home_page_gui():
@@ -65,6 +69,8 @@ def home_page_gui():
     task6btn.pack()
     task7btn = Button(home_page, text="Task 7", command=lambda: task7page.tkraise(), font=btn_font)
     task7btn.pack()
+    task8btn = Button(home_page, text="Task 8", command=lambda: task8page.tkraise(), font=btn_font)
+    task8btn.pack()
 
 def read_signal():
     try:
@@ -655,6 +661,24 @@ def task7page_gui():
     home_page_btn = Button(task7page, text="Home Page", command=lambda: home_page.tkraise(), font=btn_font)
     home_page_btn.pack()
 
+def task8page_gui():
+    # read_signal_btn = Button(task8page, text="Read Signal", command=lambda: Task8.Task8.read_signal("signal"), font=btn_font)
+    # read_signal_btn.pack()
+    #
+    # read_filter_btn = Button(task8page, text="Read Filter", command=lambda: Task8.Task8.read_signal("filter"), font=btn_font)
+    # read_filter_btn.pack()
+    read_signa1_btn= Button (task8page,text="Read signal 1",command=lambda: task8.read_signal("signal"), font=btn_font)
+    read_signa1_btn.pack()
+
+    read_signa2_btn = Button(task8page, text="Read signal 2", command=lambda: task8.read_signal("filter"),
+                             font=btn_font)
+    read_signa2_btn.pack()
+    convolve_btn = Button(task8page, text="Do Task", command=lambda: task8.do_task8(), font=btn_font)
+    convolve_btn.pack()
+
+    home_page_btn = Button(task8page, text="Home Page", command=lambda: home_page.tkraise(), font=btn_font)
+    home_page_btn.pack()
+
 def generate_signal(selected_function, amplitude_entry, phase_shift_entry, analog_frequency_entry, sampling_frequency_entry):
     selected_function = selected_function.get()
     amplitude = float(amplitude_entry.get())
@@ -754,6 +778,7 @@ task4page_gui()
 task5page_gui()
 task6page_gui()
 task7page_gui()
+task8page_gui()
 
 home_page.tkraise()
 
