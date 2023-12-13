@@ -47,28 +47,28 @@ def do_task8():
     S2 =0
     Ans=[]
     for i in range(N):
+        S1 += (signaly[i]*signaly[i])
+        S2 += (filtery[i]*filtery[i])
 
-        S1+=(signaly[i]*signaly[i])
-        S2+=(filtery[i]*filtery[i])
+    F2 = filtery
+    Div = (1 / N) * (math.sqrt(S1 * S2))
 
-    F2=filtery
 
-    Div= (1/N) * ( math.sqrt (S1*S2))
-    #print(Div)
     for i in range(N):
-        sum1=0
-        #print(i)
+        sum1 =0
         for j in range(N):
             #print(signaly[i])
             #print(F2[j])
             sum1 += signaly[j]*F2[j]
+
+
         sum1*=1/N
         #print(sum1)
         Ans.append(sum1/Div)
         #  Move the first list item to the back
         F2 = F2[1:] + F2[:1]
-        #print(Ans[i])
+        #print(Ans[i])'
     from Task8.Point1_Correlation.CompareSignal import Compare_Signals
     test_path="Task8/Point1_Correlation/CorrOutput.txt"
-    #Compare_Signals(test_path,Ans,Ans)
+    Compare_Signals(test_path,signalx,Ans)
 
