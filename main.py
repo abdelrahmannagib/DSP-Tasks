@@ -10,10 +10,12 @@ import Task5.Task5
 import Task6.Task6
 import Task7.task7
 import task8
+import task9FastCorr.Task9FastCorr
 from Task6 import *
 from Task4 import task4
 from Task5 import *
 from Task8 import *
+from task9FastCorr import *
 # Load GUI
 root = Tk()
 root.geometry("400x400")
@@ -30,6 +32,7 @@ task5page = Frame(root)
 task6page = Frame(root)
 task7page = Frame(root)
 task8page = Frame(root)
+task9page = Frame(root)
 
 btn_font = font.Font(size=15)
 lbl_font = font.Font(size=25)
@@ -50,6 +53,7 @@ def pages_initializer():
     task6page.grid(row=0, column=0, sticky="nsew")
     task7page.grid(row=0, column=0, sticky="nsew")
     task8page.grid(row=0, column=0, sticky="nsew")
+    task9page.grid(row=0, column=0, sticky="nsew")
 
 
 def home_page_gui():
@@ -71,6 +75,8 @@ def home_page_gui():
     task7btn.pack()
     task8btn = Button(home_page, text="Task 8", command=lambda: task8page.tkraise(), font=btn_font)
     task8btn.pack()
+    task9btn = Button(home_page, text="Task 9", command=lambda: task9page.tkraise(), font=btn_font)
+    task9btn.pack()
 
 def read_signal():
     try:
@@ -679,6 +685,19 @@ def task8page_gui():
     home_page_btn = Button(task8page, text="Home Page", command=lambda: home_page.tkraise(), font=btn_font)
     home_page_btn.pack()
 
+def task9page_gui():
+    read_signa1_btn = Button(task9page, text="Read signal 1", command=lambda: task9FastCorr.Task9FastCorr.read_signal("signal"),
+                             font=btn_font)
+    read_signa1_btn.pack()
+
+    read_signa2_btn = Button(task9page, text="Read signal 2", command=lambda: task9FastCorr.Task9FastCorr.read_signal("filter"),
+                             font=btn_font)
+    read_signa2_btn.pack()
+    convolve_btn = Button(task9page, text="Do Task", command=lambda: task9FastCorr.Task9FastCorr.DoFastCorr(), font=btn_font)
+    convolve_btn.pack()
+
+    home_page_btn = Button(task9page, text="Home Page", command=lambda: home_page.tkraise(), font=btn_font)
+    home_page_btn.pack()
 def generate_signal(selected_function, amplitude_entry, phase_shift_entry, analog_frequency_entry, sampling_frequency_entry):
     selected_function = selected_function.get()
     amplitude = float(amplitude_entry.get())
@@ -779,7 +798,7 @@ task5page_gui()
 task6page_gui()
 task7page_gui()
 task8page_gui()
-
+task9page_gui()
 home_page.tkraise()
 
 
