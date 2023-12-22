@@ -16,6 +16,7 @@ from Task4 import task4
 from Task5 import *
 from Task8 import *
 from task9FastCorr import *
+
 # Load GUI
 root = Tk()
 root.geometry("400x400")
