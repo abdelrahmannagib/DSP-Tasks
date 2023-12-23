@@ -694,11 +694,19 @@ def task9page_gui():
     read_signa2_btn = Button(task9page, text="Read signal 2", command=lambda: task9FastCorr.Task9FastCorr.read_signal("filter"),
                              font=btn_font)
     read_signa2_btn.pack()
-    convolve_btn = Button(task9page, text="Do Task", command=lambda: task9FastCorr.Task9FastCorr.DoFastCorr(), font=btn_font)
+
+    convolve_btn = Button(task9page, text="Corr", command=lambda: task9FastCorr.Task9FastCorr.DoFastCorr(), font=btn_font)
     convolve_btn.pack()
+
+    _btn = Button(task9page, text="Conv.", command=lambda: task9FastCorr.Task9FastCorr.fastConv(), font=btn_font)
+    _btn.pack()
+
 
     home_page_btn = Button(task9page, text="Home Page", command=lambda: home_page.tkraise(), font=btn_font)
     home_page_btn.pack()
+
+
+
 def generate_signal(selected_function, amplitude_entry, phase_shift_entry, analog_frequency_entry, sampling_frequency_entry):
     selected_function = selected_function.get()
     amplitude = float(amplitude_entry.get())
